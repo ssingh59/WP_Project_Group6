@@ -1,18 +1,21 @@
 {
-  "name": "rsvp-stevens",
+  "name": "cs546-group6",
   "version": "0.0.0",
   "private": true,
+  "main" : "app.js",
+
   "scripts": {
     "start": "node app.js",
     "test": "node_modules/.bin/mocha"
   },
   "dependencies": {
-    "cookie-parser": "~1.4.4",
+    "cookie-parser": "^1.4.5",
     "crypto-js": "^4.0.0",
-    "debug": "~2.6.9",
-    "express": "~4.16.1",
+    "debug": "^2.6.9",
+    "express": "^4.16.4",
     "express-handlebars": "^4.0.3",
-    "http-errors": "~1.6.3",
+    "handlebars": "^4.7.6",
+    "http-errors": "^1.6.3",
     "mongodb": "^3.5.5",
     "nodemailer": "^6.4.6"
   }
