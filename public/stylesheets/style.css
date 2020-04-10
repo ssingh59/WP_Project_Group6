@@ -1,0 +1,30 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+/* .error {
+  width: 300px;
+  padding: 40px;
+  position: absolute;
+  top: 18%;
+  left: 50%;
+  background:lightyellow;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  color: #ff0000;
+}
+
+.success {
+  width: 300px;
+  padding: 40px;
+  position: absolute;
+  top: 18%;
+  left: 50%;
+  background:lightyellow;
+  transform: translate(-50%, -50%);
+  color: #28a745; */
+}

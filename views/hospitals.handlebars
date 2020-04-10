@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+ <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+      <link rel="stylesheet" href="/public/stylesheets/formPage.css">
+    
+
+</head>
+<body>
+
+<div class="header">
+  <a href="#default" class="logo"><img src="/public/images/logo"  height="62" width="130"></a>
+  <div class="header-right">
+    <a href="#contact">Contact</a>
+    <a href="#about">About</a>
+  </div>
+</div>
+  <h1>Main page!</h1>
+<main>
+{{#if hasErrors}}
+    <p class="error">{{error}}</p>
+   {{else}} 
+        <p> Welcome {{data.username}}</p>
+ {{/if}}
+
+  </main>
+</body>
+</html>
