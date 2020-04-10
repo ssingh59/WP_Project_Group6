@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # WP_Project_Group6
 
 CityHealthcare Provider
@@ -25,3 +26,6 @@ User will be able to cancel the appointment.
 Search by Hospitals: User will be able to search hospital to find the doctor.
 Extra Features:
 1. Book lab tests: user will be able to book the lab test based on uploaded doctor prescription.
+=======
+# Health Provider web application
+>>>>>>> 79bac7e2905c4f53f39e26a5575b4ed644c9f230
