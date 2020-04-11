@@ -28,7 +28,7 @@ async getAllUsers() {
 },
  async addUsers(userName,  email, password, mobileNumber, dob, address){
     const userCollection = await users();
-    const userOld = await userCollection.findOne({ email: email });
+    const userOld = await userCollection.findOne({ email: email.toLowerCase() });
     if (userOld !== null) throw 'User exists please login'
 
     var key = "ASECRET-HEALTHCARE-2019"
@@ -38,7 +38,7 @@ async getAllUsers() {
     let newuser = {
         userName: userName,
         password: cipher,
-        email: email,
+        email: email.toLowerCase(),
         mobileNumber: mobileNumber,
         address: address,
         dob: dob,
@@ -64,14 +64,13 @@ async checkLogin( email, password){
 },
 async checkEmail(email){
     const userCollection = await users();
-    const userOld = await userCollection.findOne({ email: email });
+    const userOld = await userCollection.findOne({ email: email.toLowerCase() });
     if (userOld === null) throw 'User doesn\'t exists please sign up'
 
     return userOld;
 },
 async emailForgotPassword(email){
     const userOld = await this.checkEmail(email);
-    const nodemailer = require("nodemailer");
 
 let transport = nodemailer.createTransport({
     host: 'smtp.mailtrap.io',
@@ -116,7 +115,7 @@ async updateuser(userId, userName, password, email, mobileNumber, dob) {
     const updateduser = {
         userName: userName,
         password: password,
-        email: email,
+        email: email.toLowerCase(),
         mobileNumber: mobileNumber,
         address: user.address,
         dob: dob,
