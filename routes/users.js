@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const usersData = require('../data/users');
 
-
 router.post('/', async (req, res) => {
     let usersResponse = req.body;
     let username = usersResponse.username
@@ -25,7 +24,8 @@ router.post('/', async (req, res) => {
         usersResponse['username'], usersResponse['email'], usersResponse['password'], 
         "2012388477", "07-13-1994"," 1 Castle Point Ter, Hoboken, NJ 07030"
       );
-      res.render('hospitals', {data: result});
+      req.session.user = result;
+      res.redirect('users/userDetails');
     } catch (e) {
       res.status(400).render('signup', {
         error: e,
@@ -35,6 +35,14 @@ router.post('/', async (req, res) => {
 
     }
   });
+
+  //logged in user details-displayes page with user details
+	router.get('/userDetails',async function (req, res) {
+		let user = req.session.user;
+		let userDetails = await usersData.getUser(req.session.user._id);//user data from database
+		//console.log(userDetails.userName);
+		res.render('userDetails', { data:userDetails, id:req.session.user._id});
+    });
 
   router.post('/login', async (req, res) => {
     let usersResponse = req.body;
@@ -49,9 +57,10 @@ router.post('/', async (req, res) => {
     }
   
     try {
-        const result = await usersData.checkLogin( usersResponse['email'], usersResponse['password']
-      );
-      res.render('hospitals', {data: result});
+      const result = await usersData.checkLogin( usersResponse['email'], usersResponse['password']);
+      req.session.user = result;//users data stored in session
+      const userDetails = await usersData.getUser(result._id);
+      res.redirect('/doctors');//it redirects to userDeatils route in index.js route
     } catch (e) {
       res.status(400).render('login', {
         error: e,
@@ -61,6 +70,7 @@ router.post('/', async (req, res) => {
 
     }
   });
+
   router.post('/forgotPassword', async (req, res) => {
     let usersResponse = req.body;
     if (!usersResponse.email) {

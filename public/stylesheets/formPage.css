@@ -100,6 +100,11 @@ a:hover{
   display: inline-block;
 }
 
+.appointmentForm {
+  margin: 5px 0 22px 0;
+
+}
+
 .box input[type = "text"]:focus,.box input[type = "password"]:focus, .box input[type = "email"]:focus{
     border-color: #296097;
     outline: none;
@@ -167,4 +172,9 @@ a:hover{
 
 .closebtn:hover {
   color: black;
+}
+
+.w3-input{
+  padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:30%;right:50px;
+  text-align: center;
 }

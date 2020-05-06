@@ -6,6 +6,13 @@ body {
 a {
   color: #00B7FF;
 }
+.w3-input{padding:8px;
+  display:block;
+  border:none;
+  border-bottom:1px solid #ccc;
+  width:50%;
+  text-align: center;
+}
 /* .error {
   width: 300px;
   padding: 40px;
@@ -26,5 +33,5 @@ a {
   left: 50%;
   background:lightyellow;
   transform: translate(-50%, -50%);
-  color: #28a745; */
-}
+  color: #28a745; 
+}*/

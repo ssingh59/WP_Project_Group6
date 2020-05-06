@@ -18,44 +18,56 @@
     <p id = "error_alert" class="error">{{error}}</p>
      <div id = "closebtnId1" class="closebtn"> &times;</div>
 {{/if}}
-<div class="">
-<form id ="loginForm" style="text-align: left; margin-left: 500px;" form action="/reservation/new" method="POST" >
-<h1>Book Appointment</h1> 
-        <label for="fname">Patient's First Name:</label>
-            <input  type="text" name="fname" id="fname"></p>
-            <p>
-            <label for="lname">Patient's Last Name:</label>
-            <input  type="text" name="lname" id="lname"></p>
-            <p>
-            <label for="email">Patient's Email:</label>
-            <input  type="email" name="email" id="emailid"></p>
-            <p>
-            <label for="splist">Specialism:</label>
-            <select name="specialism" onchange="updatedoc(this)" id="splist">
-              <option value=""> Select a Specialism...</option>
-              {{#each spList}}
-              <option value="{{this}}">{{this}}</option>
-              {{/each}}
-            </select>
-            <p>
-            <label for="drlist">Doctor:</label>
-            <select name="doctor_id" id="drlist" required>
-              <option value=""> --Select a Hospital--</option>
-              {{#each doctorList}}
-              <option value="{{this._id}}">{{this.fname}} {{this.lname}}</option>
-              {{/each}}
-            </select></p>
-            <p>
-              <label for="resvDate">Date</label>
-              <input type="date" name="app_date" id="resvDate" value="" required></p>
-            
-            <br/>
-            <p><button type="submit" class="button1">Schedule</button></p>
-     </form>
-      </div>
+<br>
+<form id ="reservationForm" form action="/reservation/new/{{this._id}}" method="POST" >
+<h1 style="margin-left: 100px;">Book Appointment</h1>
+   <table style="margin-left: 100px;">
+     <tr></tr>
+      <tr>
+            <td><label for="docName">Doctor's Name:</label></td>
+            <td><input style="background-color: darkgray;" value="{{docsList.name}}" type="text" name="docName" id="docName" readonly></td>
+        </tr>
+        <tr>
+            <td><label for="specs">Specialization:</label></td>
+            <td><input  style="background-color: darkgray;" value="{{docsList.specialization}}" type="text" name="specs" id="specs" readonly></td>
+        </tr>
+        <tr>
+            <td><label for="fname">Patient's Name:</label></td>
+            <td><input style="background-color: darkgray;" value="{{user.userName}}"   type="text" name="fname" id="fname" readonly></td>
+        </tr>
+        <tr>
+          <td><label for="lname">Patient's Email:</label></td>
+            <td><input style="background-color: darkgray;" value="{{user.email}}" type="text" name="lname" id="lname" readonly></td>
+        </tr>
+        <tr>
+          <td><label for="lname">Select Hospital:</label></td>
+            <td><select name="hospitals" id="hosplist">
+                <option value="">Select</option>
+                {{#each HospitalList}}
+                <option value="{{this._id}}">{{this.hospital_name}}</option>
+                {{/each}}
+              </select></td>
+        </tr>
+        <tr>
+          <td><label for="resvDate">Date:</label></td>
+            <td><input type="date" name="app_date" id="resvDate" value="" required></td>
+        </tr>
+        <tr>
+          <td></td>
+            <td><p><button type="submit" class="button1">Schedule</button></td>
+        </tr>
+        
+
+    </table>
+    <br>
+    </form>
+
+
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src='/public/scripts/script_reservation_new.js'></script>
     <script>DateRestrict();</script>
-
-
+    {{!-- <script>DateRestrict();</script> --}}
+    
 
 </body>
 
