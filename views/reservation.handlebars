@@ -1,1 +1,48 @@
-<h1>inside reservation</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Appointment is confirmed.</title>
+    <link rel="stylesheet" href="/public/stylesheets/formPage.css">
+    
+
+</head>
+<body>
+  <h1 style="margin-left: 100px;">List of Doctors</h1>
+<main>
+  <div style="margin-left: 100px;">
+    Welcome {{user.userName}} ! {{user._id}}<br>
+  </div><br>
+  <div style="margin-left: 100px;">Your Appointment Confirmation details are below:<br><br><br>
+  <table>
+      <tr>
+          <td>Email:</td>
+          <td>{{user.userName}}</td>
+      </tr>
+      <tr>
+          <td>Patient ID:</td>
+          <td>{{user._id}}</td>
+      </tr>
+      <tr>
+          <td>Doctor ID:</td>
+          <td>{{appointment.doctor_id}}</td>
+      </tr>
+      <tr>
+          <td>Hospital ID:</td>
+          <td>{{appointment.hospital_id}}</td>
+      </tr>
+      <tr>
+          <td>Date:</td>
+          <td>{{appointment.date}}</td>
+      </tr>
+      <tr>
+          <td>Status:</td>
+          <td style="background-color: green">{{appointment.status}}</td>
+      </tr>
+  </table>
+  <br>
+  </main>
+</body>
+</html> 

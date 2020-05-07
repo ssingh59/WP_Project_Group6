@@ -41,11 +41,11 @@ const constructorMethod = (app) => {
 		let user = req.session.user;
 		let userid = user._id;
 		let docid = req.params.id;
-		let hospName = req.body.hospitals;
+		let hospid = req.body.hospitals;
 		let resvDate = req.body.app_date;
 		try {
-			let reservation = await reservationData.makereservation(userid, docid, resvDate, hospName);
-    		res.redirect('/reservation');
+			let reservation = await reservationData.makereservation(userid, docid, resvDate, hospid);
+    		res.render('reservation',{user:user,appointment:reservation});
 		} catch (e) {
 		  res.status(400).render('reservation_new');
 		  //res.sendStatus(400);
@@ -54,7 +54,7 @@ const constructorMethod = (app) => {
 	  });
 
 	   // show all appointments page
-		app.get("/reservation", logging, loggedIn, async (req, res) => {
+		app.get("/reservation",async (req, res) => {
 			var reservationList = await reservationData.getReservationList(req.session.user);
 			res.render('reservation', { user: req.session.user, reservationList: reservationList });
 		});

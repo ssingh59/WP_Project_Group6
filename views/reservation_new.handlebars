@@ -19,7 +19,8 @@
      <div id = "closebtnId1" class="closebtn"> &times;</div>
 {{/if}}
 <br>
-<form id ="reservationForm" form action="/reservation/new/{{this._id}}" method="POST" >
+{{!-- form for specific doctors --}}
+<form id ="reservationForm" form action="/reservation/new/{{docsList._id}}" method="POST" >
 <h1 style="margin-left: 100px;">Book Appointment</h1>
    <table style="margin-left: 100px;">
      <tr></tr>
@@ -39,9 +40,10 @@
           <td><label for="lname">Patient's Email:</label></td>
             <td><input style="background-color: darkgray;" value="{{user.email}}" type="text" name="lname" id="lname" readonly></td>
         </tr>
+        
         <tr>
           <td><label for="lname">Select Hospital:</label></td>
-            <td><select name="hospitals" id="hosplist">
+            <td><select name="hospitals" id="hosplist" required>
                 <option value="">Select</option>
                 {{#each HospitalList}}
                 <option value="{{this._id}}">{{this.hospital_name}}</option>

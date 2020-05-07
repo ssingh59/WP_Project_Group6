@@ -10,18 +10,32 @@
 
 </head>
 <body>
-  <h1 style="margin-left: 100px;">List of Doctors</h1>
+  <h1 style="margin-left: 100px;">User Information</h1>
 <main>
   <div style="margin-left: 100px;">
     Welcome {{data.userName}} ! {{data._id}}
-  </div>
+  </div><br><br>
   <div style="margin-left: 100px;">Your Information<br><br><br>
-  Email :{{data.email}} <br>
-  {{data.mobileNumber}}<br>
-  {{data.address}}<br>
-  {{data.dob}}<br>
+  <table>
+    <tr>
+      <td>Email:</td>
+      <td>{{data.email}}</td>
+    </tr>
+    <tr>
+      <td>Mobile Number:</td>
+      <td>{{data.mobileNumber}}</td>
+    </tr>
+    <tr>
+      <td>Address:</td>
+      <td>{{data.address}}</td>
+    </tr>
+    <tr>
+      <td>DOB:</td>
+      <td>{{data.dob}}</td>
+    </tr>
+  </table><br>
   </div><br>
-  <div style="margin-left: 100px;"><a href="/doctors">GoTo List of Doctors</a></div>
+  <div style="margin-left: 100px;"><a href="/doctors">GoTo The List of Doctors</a></div>
   </main>
 </body>
 </html> 

@@ -19,18 +19,15 @@
    <br>
    {{#each docsList}}
    <form id ="docsForm" form action="/reservation/new/{{this._id}}" method="GET">
-   <table style=" margin-left: 50px;">
+   <table style=" margin-left: 100px;">
         <tr>
-            <td><img src="public/images/docimage2.jpg" alt="doc1" width="100px" height="125px"></td>
-            <td>{{this.name}}<br>Gender: {{this.gender}}<br>Specialism: {{this.specialization}}</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input style="width: 200px" type="submit" value="Book Appointment" onclick="reservation_new"></td>
+            <td><img src="public/images/docimage2.jpg" alt="doc1" width="100px" height="12px"></td>
+            <td>{{this.name}}<br><br>Gender: {{this.gender}}<br><br>Specialism: {{this.specialization}}<br><br>
+            <input style="width: 200px" type="submit" value="Book Appointment" onclick="reservation_new"></td>
         </tr>
     </table>
     <br>
-    </form>
+    </form><br>
     {{/each}}
 {{!-- {{#each docsList}}
     <form style="width: 100px; margin-left: 100px;" id ="docsForm" form action="/reservation/new/{{this._id}}" method="GET">
