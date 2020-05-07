@@ -1,7 +1,8 @@
 $(document).ready(function() {
     $('#reservationForm').submit((event) => {
         event.preventDefault();
-        if($('#hosplist').val() == "") {
+
+        if($('#hosplist').val().length == "") {
             $('#error').show();
             $('#closebtnId').show();
             $('#error').html('You must select Hospital.');
@@ -12,8 +13,8 @@ $(document).ready(function() {
             $('#reservationForm').trigger('reset');
             $('#error').hide();
             $('#closebtnId').hide();
-       
-        }
+         
+        } 
     });
     $('#closebtnId').click(function() {
         $('#closebtnId').hide();
@@ -61,7 +62,7 @@ function test(){
     return true;
 }
 
-function DateRestrict() {
+ function DateRestrict() {
     let today = new Date();
     let day = today.getDate();
     let month = today.getMonth() + 1;
@@ -75,4 +76,4 @@ function DateRestrict() {
 
     today = year + '-' + month + '-' + day;
     document.getElementById("resvDate").setAttribute("min", today);
-}
+} 
