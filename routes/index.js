@@ -1,6 +1,5 @@
 
 const users = require('./users');
-const reservationRoutes = require('./reservation_new');
 const reservationData = require('../data/reservation');
 const path = require('path');
 const usersData = require('../data/users');

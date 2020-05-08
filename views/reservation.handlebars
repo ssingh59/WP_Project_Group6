@@ -10,12 +10,13 @@
 
 </head>
 <body>
-  <h1 style="margin-left: 100px;">Appointment Created</h1>
+  <h1 style="margin-left: 450px;">Appointment Details</h1>
 <main>
-  <div style="margin-left: 100px;">
-    Hello {{user.userName}} !<br>
-  </div><br>
-  <div style="margin-left: 100px;">Your Appointment number is #{{appointment._id}}<br><br><br>
+  <div style="margin-left: 450px;">
+    Hello {{user.userName}} !<br><br>Your Appointment number is #{{appointment._id}}<br><br>
+  </div>
+  <div class="card">
+    <div class="container" style="padding:16px">
   <table>
       <tr>
           <td>Name:</td>
@@ -47,6 +48,8 @@
                <button onclick="cancelReserv('{{appointment._id}}'); return false;" class="button1">Cancel</button></td>
         </tr>
   </table>
+  </div>
+  </div>
   <br>
   </main>
   <script src='/public/scripts/script_reservation_new.js'></script>
