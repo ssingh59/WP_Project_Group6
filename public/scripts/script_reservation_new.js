@@ -1,4 +1,4 @@
-$(document).ready(function() {
+/* $(document).ready(function() {
     $('#reservationForm').submit((event) => {
         event.preventDefault();
 
@@ -9,11 +9,12 @@ $(document).ready(function() {
 
         }
         else {
-            $('#reservationForm').unbind('submit').submit()
+            $('#reservationForm').unbind('submit').submit();
             $('#reservationForm').trigger('reset');
             $('#error').hide();
             $('#closebtnId').hide();
-         
+            
+            return false;
         } 
     });
     $('#closebtnId').click(function() {
@@ -55,12 +56,8 @@ $(document).ready(function() {
     {
         container.hide();
     }
-});
-  
+}); */
 
-function test(){
-    return true;
-}
 
  function DateRestrict() {
     let today = new Date();
@@ -77,3 +74,15 @@ function test(){
     today = year + '-' + month + '-' + day;
     document.getElementById("resvDate").setAttribute("min", today);
 } 
+
+function RefreshRestrict(){
+    if (window.history.replaceState) {
+        window.history.replaceState( null, null, window.location.href);
+      }
+}
+function cancelReserv(reservation){
+    let confirmation = confirm('Are you sure you want to delete this appointment?'+reservation);
+    if(confirmation) {
+      location.href = '/reservation/delete/'+reservation;
+    }
+  }

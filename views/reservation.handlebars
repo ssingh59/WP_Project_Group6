@@ -10,28 +10,28 @@
 
 </head>
 <body>
-  <h1 style="margin-left: 100px;">List of Doctors</h1>
+  <h1 style="margin-left: 100px;">Appointment Created</h1>
 <main>
   <div style="margin-left: 100px;">
-    Welcome {{user.userName}} ! {{user._id}}<br>
+    Hello {{user.userName}} !<br>
   </div><br>
-  <div style="margin-left: 100px;">Your Appointment Confirmation details are below:<br><br><br>
+  <div style="margin-left: 100px;">Your Appointment number is #{{appointment._id}}<br><br><br>
   <table>
       <tr>
-          <td>Email:</td>
+          <td>Name:</td>
           <td>{{user.userName}}</td>
       </tr>
       <tr>
           <td>Patient ID:</td>
-          <td>{{user._id}}</td>
+          <td>#{{user._id}}</td>
       </tr>
       <tr>
-          <td>Doctor ID:</td>
-          <td>{{appointment.doctor_id}}</td>
+          <td>Doctor's Name:</td>
+          <td>{{doctor.name}}</td>
       </tr>
       <tr>
-          <td>Hospital ID:</td>
-          <td>{{appointment.hospital_id}}</td>
+          <td>Hospital Name:</td>
+          <td>{{hospital.hospital_name}}</td>
       </tr>
       <tr>
           <td>Date:</td>
@@ -39,10 +39,17 @@
       </tr>
       <tr>
           <td>Status:</td>
-          <td style="background-color: green">{{appointment.status}}</td>
+          <td style="background-color:lightgreen;">{{appointment.status}}</td>
       </tr>
+       <tr>
+          <td></td>
+            <td><br><button onclick="location.href='/reservation/edit/{{appointment._id}}'" class="button1">Edit</button>
+               <button onclick="cancelReserv('{{appointment._id}}'); return false;" class="button1">Cancel</button></td>
+        </tr>
   </table>
   <br>
   </main>
+  <script src='/public/scripts/script_reservation_new.js'></script>
+    <script>RefreshRestrict();</script>
 </body>
 </html> 

@@ -6,6 +6,7 @@ const doctors = mongoCollections.doctors;
 const appointments = mongoCollections.appointments;
 const { ObjectId } = require('mongodb');
 const nodemailer = require("nodemailer");
+const user = require("./users");
 
 
 module.exports = {
@@ -79,13 +80,98 @@ module.exports = {
        
         const appointmentsCollection = await appointments();
         const appointment = await appointmentsCollection.findOne({ _id: id });
-        if (appointment === null) throw 'No user with that id';
-    //whole doc data
+        if (appointment === null) throw 'No appointment with that id';
+        //whole doc data
         return appointment;
 
     },
 
+    async getReservationList(pid) {
 
+        if (pid === undefined) {
+            throw 'input is empty';
+        }
+        /* if(typeof pid === 'string'){
+            pid = ObjectId.createFromHexString(pid);
+           } */
+    
+        const appointmentsCollection = await appointments();
+        const targets = await appointmentsCollection.find({ patient_id: pid }).sort({ date: -1 }).toArray();
+
+        //const targets = await reservationCollections.find({patient_id:pid}).toArray();
+
+        // no need to throw. patients can have no prior reservation history
+        // if(targets.length === 0) throw 'Data not found!';
+    
+        for (let i = 0; i < targets.length; i++) {
+
+            const reserv = await this.processReservationList(targets[i]);//process each reservation
+        }
+    
+        var out = new Array(0);
+        for(var x = 0 ;x < targets.length ; x++){
+            if(targets[x].status != 'cancelled'){
+                out.push(targets[x]);
+            }
+        }
+    
+        return out;
+    },
+
+    async processReservationList(reservation) {
+        if (reservation) {
+            let doctor = await this.getDoctor(reservation.doctor_id);
+            let patient = await user.getUser(reservation.patient_id).catch(e => { throw e });
+            let hospital = await this.getHospitalById(reservation.hospital_id);
+            reservation["doctor"] = doctor;
+            reservation["patient"] = patient;
+            reservation["hospital"] = hospital; 
+            reservation["date_formatted"] = new Date(reservation.date).toISOString().replace(/T.+/, '');
+            reservation["status"] = reservation.status;
+    
+            // console.log(JSON.stringify(reservation, null, 4));
+            // reservation["date_formatted"] = new Date(reservation.date).toISOString().replace(/T/, ' ').replace(/\..+/, '');
+        }
+        return reservation;
+    },
+
+    //delete appoitnment by apoointment id
+    async deleteAppointment(id){
+
+        const appointmentsCollection = await appointments();
+        if(typeof id === 'string'){
+            id = ObjectId.createFromHexString(id);
+        }
+        const appointment = await this.getAppointmentById(id);
+        
+        const deletionInfo = await appointmentsCollection.deleteOne({ _id: id });
+
+        if (deletionInfo.deletedCount === 0) {
+            throw `Could not delete appointment with id of ${id}`;
+        }
+        let deletedAppointnment = {
+            deleted: true,
+            deletedAppointment: appointment,
+        }
+        return deletedAppointnment;
+
+    },
+
+    async getHospitalById(id) {
+
+        if (!id) throw 'You must provide an id to search for';
+        if(typeof id !== 'string' && typeof id !== 'object') throw 'id must be a string or object';
+    
+        if(typeof id === 'string'){
+         id = ObjectId.createFromHexString(id);
+        }
+       
+        const hospCollection = await hospitals();
+        const hospital = await hospCollection.findOne({ _id: id });
+        if (hospital === null) throw 'No hospital with that id';
+    //whole doc data
+        return hospital;
+    },
 
     //doc id passed
     async getHospitalByDoc(id){

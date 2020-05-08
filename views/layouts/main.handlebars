@@ -15,7 +15,11 @@
   <div class="header-right">
     <a href="#contact">Contact</a>
     <a href="#about">About</a>
-  </div>
+    {{#if user}}
+    <a href="/reservation" class="button1 btn_dash button">Appointments</a>
+      <a href="/logout" class="button1 btn_logout button">Logout</a>
+    {{/if}}
+</div>
 </div>
     <main>
         {{{body}}}
