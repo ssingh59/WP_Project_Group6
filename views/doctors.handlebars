@@ -10,24 +10,28 @@
 
 </head>
 <body>
-  <h1  style="margin-left: 100px;">Doctor's Information</h1>
+  <h1  style="margin-left: 350px;">Doctor's Information</h1>
 <main>
-  <div style="margin-left: 100px;">  
-    Welcome {{data.userName}} ! Below are list of doctors.
+  <div style="margin-left: 350px;">  
+    Welcome {{user.userName}} ! Below are list of doctors.
   </div>
   <br>
    <br>
    {{#each docsList}}
+   <div class="card">
+    <div class="container" style="padding:16px">
    <form id ="docsForm" form action="/reservation/new/{{this._id}}" method="GET">
    <table style=" margin-left: 100px;">
         <tr>
-            <td><img src="public/images/docimage2.jpg" alt="doc1" width="100px" height="12px"></td>
+            <td><img src="public/images/docimage2.jpg" alt="doc1" width="100px" height="120px"></td>
             <td>{{this.name}}<br><br>Gender: {{this.gender}}<br><br>Specialism: {{this.specialization}}<br><br>
             <input style="width: 200px" type="submit" value="Book Appointment" onclick="reservation_new"></td>
         </tr>
     </table>
     <br>
-    </form><br>
+    </form>
+    </div> </div>
+    <br>
     {{/each}}
 {{!-- {{#each docsList}}
     <form style="width: 100px; margin-left: 100px;" id ="docsForm" form action="/reservation/new/{{this._id}}" method="GET">

@@ -1,6 +1,5 @@
 
 const users = require('./users');
-const reservationRoutes = require('./reservation_new');
 const reservationData = require('../data/reservation');
 const path = require('path');
 const usersData = require('../data/users');
@@ -28,15 +27,16 @@ const constructorMethod = (app) => {
 
 	//new appointment
 	app.get('/reservation/new/:id', async(req, res) => {
-		
+		let user = req.session.user;
 		let HospitalList = await reservationData.getHospitalByDoc(req.params.id);
 		let docsList = await reservationData.getDoctor(req.params.id);
-		let user = req.session.user;
+		
 		
 		//res.render('reservation_new', { doctorList: doctorList, spList: specialismList.List });
 		res.render('reservation_new',{user:user,HospitalList:HospitalList,docsList:docsList});
 	});
 
+//new appointment information by user id
 	app.post('/reservation/new/:id', async (req, res) => {
 		let user = req.session.user;
 		let userid = user._id;
@@ -44,8 +44,10 @@ const constructorMethod = (app) => {
 		let hospid = req.body.hospitals;
 		let resvDate = req.body.app_date;
 		try {
-			let reservation = await reservationData.makereservation(userid, docid, resvDate, hospid);
-    		res.render('reservation',{user:user,appointment:reservation});
+			const reservation = await reservationData.makereservation(userid, docid, resvDate, hospid);
+			const doctor = await reservationData.getDoctor(docid);
+			const hospital = await reservationData.getHospitalById(hospid);
+    		res.render('reservation',{user:user,appointment:reservation, doctor:doctor, hospital:hospital});
 		} catch (e) {
 		  res.status(400).render('reservation_new');
 		  //res.sendStatus(400);
@@ -53,17 +55,50 @@ const constructorMethod = (app) => {
 		}
 	  });
 
+	 // /reservation/edit/{{appointment._id}}
+	  app.get('/reservation/edit/:id', async(req, res) => {
+		let user = req.session.user;
+		const oldAppointment =  await reservationData.getAppointmentById(req.params.id)
+		let docsList = await reservationData.getDoctor(oldAppointment.doctor_id);
+		let HospitalList = await reservationData.getHospitalByDoc(docsList._id);
+		res.render('reservation_new',{user:user,HospitalList:HospitalList,docsList:docsList,oldAppointment:oldAppointment,title:"Change Appointment Details"});
+	});
+
+	  //get single reservation based on clicked reservation on list of appointments
+	  app.get("/reservation/get/:id",async (req, res) => {
+		let user = req.session.user;
+		try {
+			const reservation = await reservationData.getAppointmentById(req.params.id);
+			const doctor = await reservationData.getDoctor(reservation.doctor_id);
+			const hospital = await reservationData.getHospitalById(reservation.hospital_id);
+    		res.render('reservation',{user:user,appointment:reservation, doctor:doctor, hospital:hospital});
+		} catch (e) {
+		  res.status(400).render('reservation_new');
+		  //res.sendStatus(400);
+		}
+	});
+
+	 // delete appointment
+	 app.get('/reservation/delete/:id', async (req , res) =>{
+		const deletedAppoint = await reservationData.deleteAppointment(req.params.id);
+		res.redirect('/reservation');
+	  });
+
+	
 	   // show all appointments page
 		app.get("/reservation",async (req, res) => {
-			var reservationList = await reservationData.getReservationList(req.session.user);
-			res.render('reservation', { user: req.session.user, reservationList: reservationList });
+			let user = req.session.user;
+			const reservationList = await reservationData.getReservationList(user._id);
+
+			res.render('all_reservations', { user: req.session.user, reservationList: reservationList });
 		});
 
 	//doctors details
 	app.get('/doctors', async (req, res) => {
+		let user = req.session.user;
 		let HospitalList = await reservationData.getAllHospitals();
 		let docsList = await reservationData.getAllDoctors();
-		res.render('doctors',{docsList:docsList});
+		res.render('doctors',{docsList:docsList,user:user});
 	});
 
 	app.use("*", (req, res) => {

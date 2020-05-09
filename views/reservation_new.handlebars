@@ -10,7 +10,7 @@
 
 </head>
 <body>
-
+<h1 style="margin-left: 500px;">Book Appointment</h1>
 
 <div id="error" class ="error" hidden></div>
 <div id = "closebtnId" class="closebtn" hidden> &times;</div>
@@ -20,8 +20,11 @@
 {{/if}}
 <br>
 {{!-- form for specific doctors --}}
+<div class="card">
+    <div class="container" style="padding:16px">
 <form id ="reservationForm" form action="/reservation/new/{{docsList._id}}" method="POST" >
-<h1 style="margin-left: 100px;">Book Appointment</h1>
+
+
    <table style="margin-left: 100px;">
      <tr></tr>
       <tr>
@@ -56,14 +59,12 @@
         </tr>
         <tr>
           <td></td>
-            <td><p><button type="submit" class="button1">Schedule</button></td>
+            <td><button type="submit" class="button1">Schedule</button></td>
         </tr>
-        
-
     </table>
     <br>
     </form>
-
+    </div></div>
 
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src='/public/scripts/script_reservation_new.js'></script>
