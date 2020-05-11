@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 
 const configRoutes = require('./routes');
 const exphbs = require('express-handlebars');
+const handlebars = require('handlebars');
 
 app.use('/public', static);
 app.use(express.json());app.use(bodyParser.json());
@@ -20,6 +21,9 @@ app.use(session({
   cookie: { secure: false }
 }));
 
+handlebars.registerHelper('json', function(context) {
+  return JSON.stringify(context);
+});
 app.use(cookieParser());
 
 app.use(express.urlencoded({ extended: false }));
