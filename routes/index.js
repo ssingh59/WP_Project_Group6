@@ -3,6 +3,7 @@ const users = require('./users');
 const reservationData = require('../data/reservation');
 const path = require('path');
 const usersData = require('../data/users');
+var doctorData = require('../data/doctors')
 //const doctorsList = require('./doctorsDetails');
 
 const constructorMethod = (app) => {
@@ -96,9 +97,18 @@ const constructorMethod = (app) => {
 	//doctors details
 	app.get('/doctors', async (req, res) => {
 		let user = req.session.user;
-		let HospitalList = await reservationData.getAllHospitals();
+		let hospitalList = await reservationData.getAllHospitals();
 		let docsList = await reservationData.getAllDoctors();
-		res.render('doctors',{docsList:docsList,user:user});
+		res.render('doctors',{docsList:docsList,user:user, hospitalList: hospitalList});
+	});
+
+	app.get('/search', async (req, res) => {
+		let user = req.session.user;
+		let hospitalList = await reservationData.getAllHospitals();
+		//console.log(req.query.hospital)
+		let hospital = await reservationData.getHospitalById(req.query.id);
+		let docsList = await doctorData.getDoctorsByHospital(hospital);
+		res.render('doctors',{docsList:docsList,user:user, hospitalList: hospitalList});
 	});
 
 	app.use("*", (req, res) => {
