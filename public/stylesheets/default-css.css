@@ -5,6 +5,86 @@
     clear: both
 }
 
+::-moz-selection {
+    background: #00b0ff;
+    color: #fff;
+    text-shadow: none;
+}
+
+::selection {
+    background: #00b0ff;
+    color: #fff;
+    text-shadow: none;
+}
+
+.no-mar {
+    margin: 0!important;
+}
+
+.no-pad {
+    padding: 0!important;
+}
+
+.no-pad-top {
+    padding-top: 0!important;
+}
+
+.no-pad-bottom{
+    padding-bottom: 0!important;
+}
+
+
+
+/*custome class*/
+
+.mar-bot-50 {
+    margin-bottom: 50px;
+}
+
+.mar-bot-40 {
+    margin-bottom: 40px;
+}
+
+.mar-bot-35 {
+    margin-bottom: 35px;
+}
+
+.mar-bot-30 {
+    margin-bottom: 30px;
+}
+
+.mar-top-30 {
+    margin-top: 30px;
+}
+
+.mar-top-80 {
+    margin-top: 80px;
+}
+
+.mar-top-80 {
+    margin-top: 80px;
+}
+
+.mar-top-55 {
+    margin-top: 55px;
+}
+
+.mar-top-108 {
+    margin-top: 108px;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
 *,
 *:before,
 *:after {
@@ -20,7 +100,7 @@
 html {
     font-size: 62.5%;
     -webkit-font-smoothing: antialiased;
-} */
+}
 
 body {
     background: #fff;
@@ -45,6 +125,27 @@ textarea {
     letter-spacing: 1px;
 }
 
+/*custome css*/
+
+/*----------------------------
+  Basic margin padding
+-----------------------------*/
+
+.m--0 {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+}
+.p--0 {
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+/*---------------------------
+  Margin top
+--------------------------*/
 .mt--0 { margin-top: 0 }
 .mt--10 { margin-top: 10px }
 .mt--15 { margin-top: 15px }
@@ -93,7 +194,7 @@ textarea {
 .mb--190 { margin-bottom: 190px }
 
 /*--------------------------
-  17. Padding top
+   Padding top
 ---------------------------*/
 .pt--0 { padding-top: 0 }
 .pt--10 { padding-top: 10px }
@@ -148,7 +249,7 @@ textarea {
 }
 
 /*------------------------------
-  19. Page section padding 
+  Page section padding 
 -------------------------------*/
 .ptb--0 { padding: 0 }
 .ptb--10 { padding: 10px 0 }
@@ -171,7 +272,7 @@ textarea {
 .ptb--180 { padding: 180px 0 }
 
 /*---------------------------
-  20. Page section margin 
+  Page section margin 
 -----------------------------*/
 .mtb--0 { margin: 0 }
 .mtb--10 { margin: 10px 0 }
