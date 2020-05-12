@@ -4,8 +4,7 @@ const reservationData = require('../data/reservation');
 const hospitalData = require('../data/hospitals');
 const path = require('path');
 const usersData = require('../data/users');
-var doctorData = require('../data/doctors')
-var hospitalData = require('../data/hospitals')
+const doctorData = require('../data/doctors');
 //const doctorsList = require('./doctorsDetails');
 
 const constructorMethod = (app) => {
