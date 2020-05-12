@@ -6,14 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>List of Doctors</title>
     <link rel="stylesheet" href="/public/stylesheets/formPage.css">
+        <link rel="stylesheet" href="/public/stylesheets/home.css">
     
 
 </head>
-<body>
+<body onload="populateHospitalSearch('{{ json hospitalList}}')">
+    <form autocomplete="off" action="/search" id ="searchContainer">
+  <div class="autocomplete" style="width:300px;">
+    <input id="hospitalSearch" type="text" name="hospital" placeholder="Search By Hospital">
+    <input id="hospitalID" type="text" name="id">
+    <input id="doctorSearch"  name="doctor" placeholder="Search By Doctor" type="hidden">
+  </div>
+  <input type="submit">
+</form>
   <h1  style="margin-left: 350px;">Doctor's Information</h1>
 <main>
   <div style="margin-left: 350px;">  
-    Welcome {{user.userName}} ! Below are list of doctors.
+    Welcome {{user.userName}} ! Below are list of doctors.{{hospitalList.name}}
   </div>
   <br>
    <br>
@@ -450,5 +459,9 @@
         <!-- footer area bootom end -->
     </footer>
     <!-- footer area end -->
+  </main>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+      crossorigin="anonymous"></script>
+      <script src='/public/scripts/script_search.js'></script>
 </body>
 </html>
