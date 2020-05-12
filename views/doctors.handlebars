@@ -18,10 +18,13 @@
     <input id="hospitalID" type="text" name="id">
   <input id="search" type="submit", value="Search">
 </form>
-  <h1  style="margin-left: 350px;">Doctor's Information</h1>
+  <h1  style="margin-left: 150px;">Doctor's Information</h1>
 <main>
-  <div style="margin-left: 350px;">  
+
+  <div style="margin-left: 150px;">  
     Welcome {{user.userName}} ! Below are list of doctors.
+
+
   </div>
   <br>
    <br>
@@ -32,7 +35,7 @@
    <form id ="docsForm" form action="/reservation/new/{{this._id}}" method="GET">
    <table style=" margin-left: 100px;">
         <tr>
-            <td><img src="public/images/docimage2.jpg" alt="doc1" width="100px" height="120px"></td>
+            <td><img src="public/images/docimage2.jpg" alt="doc1" width="100px" height="138px"></td>
             <td>{{this.name}}<br><br>Gender: {{this.gender}}<br><br>Specialism: {{this.specialization}}<br><br>
             <input style="width: 200px" type="submit" value="Book Appointment" onclick="reservation_new"></td>
         </tr>

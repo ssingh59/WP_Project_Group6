@@ -7,20 +7,20 @@ const { ObjectId } = require('mongodb');
 var hospitalData = require('../data/hospitals')
 const user = require("./users");
 module.exports = {
-    async getDoctor(id) {
-        if (!id) throw 'You must provide an id to search for';
-        if(typeof id !== 'string' && typeof id !== 'object') throw 'id must be a string or object';
-    
-        if(typeof id === 'string'){
-         id = ObjectId.createFromHexString(id);
-        }
-       
-        const docCollection = await doctors();
-        const doc = await docCollection.findOne({ _id: id });
-        if (doc === null) throw 'No user with that id';
-    //whole doc data
-        return doc;
-    },
+  async getDoctor(id) {
+    if (!id) throw 'You must provide an id to search for';
+    if(typeof id !== 'string' && typeof id !== 'object') throw 'id must be a string or object';
+
+    if(typeof id === 'string'){
+     id = ObjectId.createFromHexString(id);
+    }
+   
+    const docCollection = await doctors();
+    const doc = await docCollection.findOne({ _id: id });
+    if (doc === null) throw 'No user with that id';
+//whole doc data
+    return doc;
+},
     async addDoctors(doctorData) {
         const doctorsCollection = await doctors();
     
@@ -53,5 +53,6 @@ module.exports = {
         const arrayOfDoctors = await docCollection.find({_id:id}).toArray();
         return arrayOfDoctors;
     },
+
       
 }
