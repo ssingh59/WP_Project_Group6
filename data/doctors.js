@@ -41,11 +41,18 @@ module.exports = {
         return docsList;
 
     },
-    async getAllDoctors(){
-      const doctorsCollections = await doctors();
-      const docsList = await doctorsCollections.find({}).toArray();
-      return docsList;
+    async getDoctors(id) {
+        if (!id) throw 'You must provide an id to search for';
+        if(typeof id !== 'string' && typeof id !== 'object') throw 'id must be a string or object';
+    
+        if(typeof id === 'string'){
+         id = ObjectId.createFromHexString(id);
+        }
+       
+        const docCollection = await doctors();
+        const arrayOfDoctors = await docCollection.find({_id:id}).toArray();
+        return arrayOfDoctors;
+    },
 
-  }
       
 }
