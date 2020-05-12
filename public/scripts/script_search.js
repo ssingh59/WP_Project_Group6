@@ -1,41 +1,36 @@
-let hospitalList =[];
+let hospitalDocList =[];
 let doctorList =[];
-function autocompleteHospitals(inp, hospitalID) {
-  /*the autocomplete function takes two arguments,
-  the text field element and an array of possible autocompleted values:*/
+function autocomplete(inp, hospitalID) {
   var currentFocus;
-  /*execute a function when someone writes in the text field:*/
+  document.getElementById("search").disabled = true;
   inp.addEventListener("input", function(e) {
       var a, b, i, val = this.value;
-      /*close any already open lists of autocompleted values*/
       closeAllLists();
       if (!val) { return false;}
+      val = val.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, "")
       currentFocus = -1;
-      /*create a DIV element that will contain the items (values):*/
       a = document.createElement("DIV");
       a.setAttribute("id", this.id + "autocomplete-list");
       a.setAttribute("class", "autocomplete-items");
-      /*append the DIV element as a child of the autocomplete container:*/
       this.parentNode.appendChild(a);
-      /*for each item in the array...*/
-      for (i = 0; i < hospitalList.length; i++) {
+      for (i = 0; i < hospitalDocList.length; i++) {
         /*check if the item starts with the same letters as the text field value:*/
-        if (hospitalList[i].name.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+        var HosDocName = hospitalDocList[i].name.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, "");
+        if (hospitalDocList[i].name.replace("Dr. ", "").substr(0, val.length).toUpperCase() == val.toUpperCase() || HosDocName.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
           /*create a DIV element for each matching element:*/
           b = document.createElement("DIV");
           /*make the matching letters bold:*/
-          b.innerHTML = "<strong>" + hospitalList[i].name.substr(0, val.length) + "</strong>";
-          b.innerHTML += hospitalList[i].name.substr(val.length);
+          b.innerHTML = "<strong>" + hospitalDocList[i].name.substr(0, val.length) + "</strong>";
+          b.innerHTML += hospitalDocList[i].name.substr(val.length);
           /*insert a input field that will hold the current array item's value:*/
-          b.innerHTML += "<input type='hidden' value='" + hospitalList[i].name + "'>";
-          b.innerHTML += "<input type='hidden' value='" + hospitalList[i]._id + "'>";
+          b.innerHTML += "<input type='hidden' value='" + hospitalDocList[i].name + "'>";
+          b.innerHTML += "<input type='hidden' value='" + hospitalDocList[i]._id + "'>";
           /*execute a function when someone clicks on the item value (DIV element):*/
           b.addEventListener("click", function(e) {
               /*insert the value for the autocomplete text field:*/
               inp.value = this.getElementsByTagName("input")[0].value;
               hospitalID.value= this.getElementsByTagName("input")[1].value
-              /*close the list of autocompleted values,
-              (or any other open lists of autocompleted values:*/
+              document.getElementById("search").disabled = false;
               closeAllLists();
           });
           a.appendChild(b);
@@ -98,12 +93,13 @@ function autocompleteHospitals(inp, hospitalID) {
       closeAllLists(e.target);
   });
 }
-  function populateHospitalSearch(data){
-      hospitalList = JSON.parse(data);
-      //  arr = data.split(",")
-      //  var txt = {"name":"John", "age":30, "city":"New York"}
-
-       //alert(arr[0].name)
+  function populateHospitalSearch(data, docData){
+      for (var x of JSON.parse(data)) {
+          hospitalDocList.push(x)
+      }
+      for (var y of JSON.parse(docData)) {
+        hospitalDocList.push(y)
+    }
   }
 
-  autocompleteHospitals(document.getElementById("hospitalSearch"), document.getElementById("hospitalID"));
+  autocomplete(document.getElementById("hospitalSearch"), document.getElementById("hospitalID"));
