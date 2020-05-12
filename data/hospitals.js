@@ -5,7 +5,9 @@ const hospitals = mongoCollections.hospitals;
 const doctors = mongoCollections.doctors;
 const { ObjectId } = require('mongodb');
 const user = require("./users");
+
 module.exports = {
+
     async getHospitalById(id) {
 
         if (!id) throw 'You must provide an id to search for';
@@ -18,7 +20,7 @@ module.exports = {
         const hospCollection = await hospitals();
         const hospital = await hospCollection.findOne({ _id: id });
         if (hospital === null) throw 'No hospital with that id';
-    //whole doc data
+        //whole doc data
         return hospital;
     },
 
@@ -34,10 +36,15 @@ module.exports = {
         const hospitalCollection = await hospitals();
         const docCollection = await doctors();
         const arrayOfHospitals = await hospitalCollection.find({'doctors._id':id}).toArray();
+        if(arrayOfHospitals === null) throw 'no hospitals found.'
         return arrayOfHospitals;
 
     },
+
     async addHospitals(data){
+        if(!data){
+            throw 'Hospital data is not provided.'
+        }
         const hospitalCollection = await hospitals();
         const insertInfo = await hospitalCollection.insertOne(data);
         if (insertInfo.insertedCount === 0) throw 'Insert failed';
@@ -49,6 +56,9 @@ module.exports = {
     async addDoctorsToHospital(data, hosID){
         if(typeof hosID === 'string'){
             hosID = ObjectId.createFromHexString(hosID);
+        }
+        if(!data){
+            throw'doctors cannot be empty.'
         }
   
         const hospitalCollection = await hospitals();
