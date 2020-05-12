@@ -60,7 +60,6 @@ module.exports = {
             hospital_id: hospid,
             date: resvDate,
             days: 0,
-            notes:"",
             status: 'confirmed'
         }
     
@@ -157,6 +156,34 @@ module.exports = {
 
     },
 
+    //based on apooitnment number and new date
+    async editReservation(id,resvDate){
+        if (!id) throw "You must provide an id to search for";
+    
+        if (!resvDate) throw "You must provide a name for your Animal";
+
+        let objId = id;
+        const appointmentCollection = await appointments();
+
+        const updatedDate = {
+          date: resvDate
+        };
+
+        if(typeof id === 'string'){
+            objId = ObjectId.createFromHexString(id);
+        }
+        
+
+        const updatedReservation = await appointmentCollection.updateOne({ _id: objId }, { $set: updatedDate });
+    
+        if (updatedReservation.modifiedCount === 0) {
+          throw "could not update reservation successfully";
+        }
+    
+        return await this.getAppointmentById(id);
+
+    },
+
     async getHospitalById(id) {
 
         if (!id) throw 'You must provide an id to search for';
@@ -175,12 +202,46 @@ module.exports = {
 
     //doc id passed
     async getHospitalByDoc(id){
+
+        if (!id) throw 'You must provide an id to search for';
+        if(typeof id !== 'string' && typeof id !== 'object') throw 'id must be a string or object';
+
+        if(typeof id === 'string'){
+            id = ObjectId.createFromHexString(id);
+           }
         const hospitalCollection = await hospitals();
         const docCollection = await doctors();
-        const arrayOfHospitals = await hospitalCollection.find({doctors:id}).toArray();
+        const arrayOfHospitals = await hospitalCollection.find({'doctors._id':id}).toArray();
         return arrayOfHospitals;
 
     },
+   
+    async updateNotesById(id, notes) {
+        
+        if (!id) throw "You must provide an id to search for";
+    
+        if (!notes) throw "You must provide a name for your Animal";
+
+        let objId = id;
+        const appointmentCollection = await appointments();
+
+        const updatedNote = {
+          notes: notes
+        };
+
+        if(typeof id === 'string'){
+            objId = ObjectId.createFromHexString(id);
+        }
+        
+
+        const updatedNotes = await appointmentCollection.updateOne({ _id: objId }, { $set: updatedNote });
+    
+        if (updatedNotes.modifiedCount === 0) {
+          throw "could not update notes successfully";
+        }
+    
+        return await this.getAppointmentById(id);
+      },
     
     async getAllHospitals() {
 

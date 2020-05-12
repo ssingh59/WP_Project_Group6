@@ -9,7 +9,7 @@
   <br/> 
 
   <div class="container" style="padding:16px">
-    <h2 style="text-align: center;">Booked Appointments</h2>
+    <h2 style="margin-left:138px;">{{title}}</h2>
   </div>
 
 
@@ -39,7 +39,7 @@
       </tr>
       <tr>
         <td>Hospital:</td>
-        <td><span class="status-{{this.status}}">{{this.hospital.hospital_name}}</span></td>
+        <td><span class="status-{{this.status}}">{{this.hospital.name}}</span></td>
       </tr>
       <tr>
         <td>Status:</td>
@@ -54,7 +54,7 @@
   {{/each}}
 
   {{#unless reservationList}}
-    <div class="w3-container">
+    <div class="card">
       <p>No records found</p>
     </div>
   {{/unless}}

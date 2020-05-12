@@ -24,9 +24,16 @@ module.exports = {
 
     //doc id passed
     async getHospitalByDoc(id){
+
+        if (!id) throw 'You must provide an id to search for';
+        if(typeof id !== 'string' && typeof id !== 'object') throw 'id must be a string or object';
+
+        if(typeof id === 'string'){
+            id = ObjectId.createFromHexString(id);
+           }
         const hospitalCollection = await hospitals();
         const docCollection = await doctors();
-        const arrayOfHospitals = await hospitalCollection.find({doctors:id}).toArray();
+        const arrayOfHospitals = await hospitalCollection.find({'doctors._id':id}).toArray();
         return arrayOfHospitals;
 
     },

@@ -10,7 +10,7 @@
 
 </head>
 <body>
-<h1 style="margin-left: 500px;">Book Appointment</h1>
+<h1 style="margin-left: 150px;">{{title}}</h1>
 
 <div id="error" class ="error" hidden></div>
 <div id = "closebtnId" class="closebtn" hidden> &times;</div>
@@ -49,7 +49,7 @@
             <td><select name="hospitals" id="hosplist" required>
                 <option value="">Select</option>
                 {{#each HospitalList}}
-                <option value="{{this._id}}">{{this.hospital_name}}</option>
+                <option value="{{this._id}}">{{this.name}}</option>
                 {{/each}}
               </select></td>
         </tr>
