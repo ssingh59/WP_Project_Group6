@@ -2,6 +2,7 @@ let hospitalDocList =[];
 let doctorList =[];
 function autocomplete(inp, hospitalID) {
   var currentFocus;
+  document.getElementById("search").disabled = true;
   inp.addEventListener("input", function(e) {
       var a, b, i, val = this.value;
       closeAllLists();
@@ -29,6 +30,7 @@ function autocomplete(inp, hospitalID) {
               /*insert the value for the autocomplete text field:*/
               inp.value = this.getElementsByTagName("input")[0].value;
               hospitalID.value= this.getElementsByTagName("input")[1].value
+              document.getElementById("search").disabled = false;
               closeAllLists();
           });
           a.appendChild(b);
