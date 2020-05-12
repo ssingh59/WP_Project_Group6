@@ -10,22 +10,22 @@
     
 
 </head>
-<body onload="populateHospitalSearch('{{ json hospitalList}}')">
+<body onload="populateHospitalSearch('{{ json hospitalList}}', '{{ json docSearchList}}')">
     <form autocomplete="off" action="/search" id ="searchContainer">
   <div class="autocomplete" style="width:300px;">
-    <input id="hospitalSearch" type="text" name="hospital" placeholder="Search By Hospital">
-    <input id="hospitalID" type="text" name="id">
-    <input id="doctorSearch"  name="doctor" placeholder="Search By Doctor" type="hidden">
+    <input id="hospitalSearch" type="text" name="hospital" placeholder="Search By Hospital/Doctor" value="{{searchValue}}">
   </div>
-  <input type="submit">
+    <input id="hospitalID" type="text" name="id">
+  <input type="submit", value="Search">
 </form>
   <h1  style="margin-left: 350px;">Doctor's Information</h1>
 <main>
   <div style="margin-left: 350px;">  
-    Welcome {{user.userName}} ! Below are list of doctors.{{hospitalList.name}}
+    Welcome {{user.userName}} ! Below are list of doctors.
   </div>
   <br>
    <br>
+   {{#if docsList}}
    {{#each docsList}}
    <div class="card">
     <div class="container" style="padding:16px">
@@ -42,6 +42,9 @@
     </div> </div>
     <br>
     {{/each}}
+    {{else}}
+    <div style="margin-left: 350px;">Data Not Available. Please try some other doctor or hospital</div>
+   {{/if}}
 {{!-- {{#each docsList}}
     <form style="width: 100px; margin-left: 100px;" id ="docsForm" form action="/reservation/new/{{this._id}}" method="GET">
     <div style="width: 100px; float:left; height:125px; background:gray; margin:10px">
