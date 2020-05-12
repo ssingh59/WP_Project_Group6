@@ -4,6 +4,7 @@ const reservationData = require('../data/reservation');
 const path = require('path');
 const usersData = require('../data/users');
 var doctorData = require('../data/doctors')
+var hospitalData = require('../data/hospitals')
 //const doctorsList = require('./doctorsDetails');
 
 const constructorMethod = (app) => {
@@ -97,22 +98,22 @@ const constructorMethod = (app) => {
 	//doctors details
 	app.get('/doctors', async (req, res) => {
 		let user = req.session.user;
-		let hospitalList = await reservationData.getAllHospitals();
-		let docsList = await reservationData.getAllDoctors();
-		let docSearchList = await reservationData.getAllDoctors();
+		let hospitalList = await hospitalData.getAllHospitals();
+		let docsList = await doctorData.getAllDoctors();
+		let docSearchList = await doctorData.getAllDoctors();
 		res.render('doctors',{docsList:docsList,user:user, hospitalList: hospitalList, docSearchList:docSearchList});
 	});
 
 	app.get('/search', async (req, res) => {
 		let user = req.session.user;
-		let hospitalList = await reservationData.getAllHospitals();
-		let docSearchList = await reservationData.getAllDoctors();
+		let hospitalList = await hospitalData.getAllHospitals();
+		let docSearchList = await doctorData.getAllDoctors();
 		var docsList;
 		let hospital;
 		const searchValue = req.query.hospital;
 		//console.log(req.query.hospital)
 		try{
-		 hospital = await reservationData.getHospitalById(req.query.id);
+		 hospital = await hospitalData.getHospitalById(req.query.id);
 		}
 		catch(err){
 				//console.log(err);
