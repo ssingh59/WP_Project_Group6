@@ -43,7 +43,7 @@
           <td style="background-color:lightgreen;">{{appointment.status}}</td>
       </tr>
       <tr>
-          <td><label id="notesID">Notes:</label></td>
+          <td><label id="notesID" for="textAreaNote">Notes:</label></td>
           
           <td><textarea style="display:none;" name="textAreaNote" id="textAreaNote" rows="4" cols="50"></textarea>
           <p id="addedNotes">{{appointment.notes}}</p><button class="button1" id="addNotesSubmit" hidden onclick="updateNotes('{{appointment._id}}')">Update Notes</button></td>
@@ -87,7 +87,7 @@
         </tr>
         
         <tr>
-          <td><label for="lname">Select Hospital:</label></td>
+          <td><label for="hospName">Select Hospital:</label></td>
           <td><input style="background-color: darkgray;" value="{{hospital.name}}" type="text" name="hospName" id="hospName" readonly></td>
         </tr>
 
