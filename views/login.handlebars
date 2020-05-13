@@ -23,9 +23,12 @@
 {{/if}}
 <div class="box">
 <form id ="loginForm" action="/users/login" method="POST" >
-        <h1>Login In</h1>   
+        <h1>Login In</h1>
+        <label for="email"></label>     
         <input id = "email" type="email" name="email" placeholder="Email" >
+        <label for="password"></label>  
         <input id = "password" type="password" name = "password" placeholder="Password" >
+        <label for="submit"></label>  
         <input type="submit" value="Log In" placeholder="Log In">
         <a href="/users/forgotPassword">Forgot Password?</a>
     </form>

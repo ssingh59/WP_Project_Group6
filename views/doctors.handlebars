@@ -13,7 +13,7 @@
 <body onload="populateHospitalSearch('{{ json hospitalList}}', '{{ json docSearchList}}')">
      {{#ifEquals user null}}
     <div class="header">
-  <a href="#default" class="logo"><img src="/public/images/logo"  height="62" width="130"></a>
+  <img src="/public/images/logo"  height="62" width="130" alt=" ">
     <div class="header-right">
     <a href="/users/signup">Signup</a>
     <a href="/users/login">Log In</a>
@@ -22,6 +22,7 @@
       {{/ifEquals}}
     <form autocomplete="off" action="/search" id ="searchContainer">
   <div class="autocomplete" style="width:300px;">
+    <label for="hospitalSearch"></label>  
     <input id="hospitalSearch" type="text" name="hospital" placeholder="Search By Hospital/Doctor" value="{{searchValue}}">
   </div>
     <input id="hospitalID" type="text" name="id">
