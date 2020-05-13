@@ -85,7 +85,7 @@ const message = {
     to: userOld.email,
     subject: 'Password Reset',
     text: 'A password reset event has been triggered.'+
-   ' To complete the password reset process, visit the following link:  http://localhost:3000/changePassword?id='+ userOld['_id'],
+   ' To complete the password reset process, visit the following link:  http://localhost:3000/users/changePassword?id='+ userOld['_id'],
 };
 transport.sendMail(message, function (err, info) {
     if (err) throw err; 

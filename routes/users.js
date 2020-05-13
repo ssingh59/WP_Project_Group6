@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const usersData = require('../data/users');
+const xss = require('xss');
 
 router.post('/', async (req, res) => {
     let usersResponse = req.body;
@@ -21,10 +22,14 @@ router.post('/', async (req, res) => {
   
     try {
       const result = await usersData.addUsers(
-        usersResponse['username'], usersResponse['email'], usersResponse['password'], 
+        xss(usersResponse['username']), xss(usersResponse['email']), xss(usersResponse['password']), 
         "2012388477", "07-13-1994"," 1 Castle Point Ter, Hoboken, NJ 07030"
       );
       req.session.user = result;
+      res.cookie('AuthCookie');
+      var hour = 900000 //15 minutes
+      req.session.cookie.expires = new Date(Date.now() + hour)
+      req.session.cookie.maxAge = hour
       res.redirect('users/userDetails');
     } catch (e) {
       res.status(400).render('signup', {
@@ -57,8 +62,12 @@ router.post('/', async (req, res) => {
     }
   
     try {
-      const result = await usersData.checkLogin( usersResponse['email'], usersResponse['password']);
+      const result = await usersData.checkLogin( xss(usersResponse['email']), xss(usersResponse['password']));
       req.session.user = result;//users data stored in session
+      res.cookie('AuthCookie');
+      var hour = 900000 //15 minutes
+      req.session.cookie.expires = new Date(Date.now() + hour)
+      req.session.cookie.maxAge = hour
       const userDetails = await usersData.getUser(result._id);
       res.redirect('/doctors');//it redirects to userDeatils route in index.js route
     } catch (e) {
@@ -79,7 +88,7 @@ router.post('/', async (req, res) => {
     }
   
     try {
-        const result = await usersData.emailForgotPassword( usersResponse['email']);
+        const result = await usersData.emailForgotPassword( xss(usersResponse['email']));
       res.render('forgotPassword', {
         data: result,
         isSuccess: true,
@@ -95,7 +104,6 @@ router.post('/', async (req, res) => {
   });
   router.post('/resetPassword', async (req, res) => {
     let usersRequest = req.query;
-    console.log(usersRequest.id);
     let usersResponse = req.body;
     if (!usersRequest.id) {
       res.status(400).json({error: 'You must provide id'});
@@ -103,7 +111,7 @@ router.post('/', async (req, res) => {
     }
   
     try {
-        const result = await usersData.updatePassword(usersRequest.id, usersResponse['password']);
+        const result = await usersData.updatePassword(xss(usersRequest.id), xss(usersResponse['password']));
       res.render('login');
     } catch (e) {
       res.status(400).render('changePassword', {
@@ -114,5 +122,22 @@ router.post('/', async (req, res) => {
 
     }
   });
+  router.get('/forgotPassword', (req, res) => {
+		res.render('forgotPassword');
+	});
 
+	router.get('/login', (req, res) => {
+    res.render('login');
+    });
+    router.get('/signup', (req, res) => {
+      res.render('signup');
+    });
+    router.get('/changePassword', (req, res) => {
+      res.render('changePassword', 
+      {
+        userID: xss(req.query.id)
+        });
+  });
+  
+  
   module.exports = router;
