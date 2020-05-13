@@ -64,23 +64,47 @@ const constructorMethod = (app) => {
 	});
 	 app.use(authenticationMiddleware)
 	 //new appointment with prefilled doctors, user details, dropdown for hopitals
-	 app.get('/reservation/new/:id', async(req, res) => {
+	 app.get('/reservation/new/:id/:hospital', async(req, res) => {
 		 let user = req.session.user;
  
-		 if(!req.params.id || req.params.id===undefined){
+		 if((!req.params.id || req.params.id===undefined) || (!req.params.hospital || req.params.hospital===undefined)){
 			res.status(400).json({error: 'Data is missing or not provided.'});
 			return;
 		 }
 		 try{
 		 let HospitalList = await hospitalData.getHospitalByDoc(xss(req.params.id));
 		 let docsList = await doctorData.getDoctor(xss(req.params.id));
+		 let hospital ="";
+		 try{
+			hospital = await hospitalData.getHospitalById(xss(req.params.hospital));
+		 }
+		 catch(err){
+			console.log(err);
+		 }
 		 //res.render('reservation_new', { doctorList: doctorList, spList: specialismList.List });
-		 res.render('reservation_new',{user:user,HospitalList:HospitalList,docsList:docsList,title:"Book new Appointment"});
+		 res.render('reservation_new',{user:user,HospitalList:HospitalList,docsList:docsList,title:"Book new Appointment", hospital:hospital});
 		
 	 } catch (e) {
 		 res.status(400).render('reservation_new');
 	   }
 	 });
+	 app.get('/reservation/new/:id', async(req, res) => {
+		let user = req.session.user;
+
+		if(!req.params.id || req.params.id===undefined){
+		   res.status(400).json({error: 'Data is missing or not provided.'});
+		   return;
+		}
+		try{
+		let HospitalList = await hospitalData.getHospitalByDoc(xss(req.params.id));
+		let docsList = await doctorData.getDoctor(xss(req.params.id));
+		//res.render('reservation_new', { doctorList: doctorList, spList: specialismList.List });
+		res.render('reservation_new',{user:user,HospitalList:HospitalList,docsList:docsList,title:"Book new Appointment"});
+	   
+	} catch (e) {
+		res.status(400).render('reservation_new');
+	  }
+	});
  
  //new appointment information by user id
 	 app.post('/reservation/new/:id', async (req, res) => {
@@ -231,6 +255,7 @@ const constructorMethod = (app) => {
 		 let docSearchList = await doctorData.getAllDoctors();
 		 let docsList;
 		 let hospital;
+		 let hospitalID;
 		 if (!req.query.id) {
 			res.status(400).json({error: 'You must provide id'});
 			return;
@@ -243,6 +268,7 @@ const constructorMethod = (app) => {
 		 //console.log(req.query.hospital)
 		 try{
 		  hospital = await hospitalData.getHospitalById(xss(req.query.id));
+		  hospitalID = hospital._id;
 		 }
 		 catch(err){
 				 //console.log(err);
@@ -253,8 +279,7 @@ const constructorMethod = (app) => {
 		 else{
 			 docsList = await doctorData.getDoctors(xss(req.query.id));
 		 }
-		 
-		 res.render('doctors',{docsList:docsList,user:user, hospitalList: hospitalList, docSearchList:docSearchList, searchValue:searchValue});
+		 res.render('doctors',{docsList:docsList,user:user, hospitalList: hospitalList, docSearchList:docSearchList, searchValue:searchValue, hospital:hospitalID});
  
 	 });
 	app.use(logInMiddleware)

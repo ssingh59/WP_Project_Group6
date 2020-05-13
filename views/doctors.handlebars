@@ -42,7 +42,7 @@
    {{#each docsList}}
    <div class="card">
     <div class="container" style="padding:16px">
-   <form id ="docsForm" action="/reservation/new/{{this._id}}" method="GET">
+   <form id ="docsForm" action="/reservation/new/{{this._id}}/{{../hospital}}" method="GET">
    <table style=" margin-left: 100px;">
         <tr>
             <td><img src="public/images/docimage2.jpg" alt="doc1" width="100" height="138"></td>
