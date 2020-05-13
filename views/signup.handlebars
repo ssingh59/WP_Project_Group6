@@ -19,11 +19,16 @@
   {{/if}}
 
 <form class="box" id ="signupForm" action="/users" method="POST" >
-        <h1>Sign up</h1>   
+        <h1>Sign up</h1>
+        <label for="username"></label>   
         <input id = "username" type="text" name="username" placeholder="Username" >
+        <label for="email"></label>  
         <input id = "email" type="email" name="email" placeholder="Email" >
+        <label for="password"></label>  
         <input id = "password" type="password" name = "password" placeholder="Password" >
+        <label for="repassword"></label>  
         <input id = "repassword" type="password" name = "repassword" placeholder="Re-enter Password" >
+        <label for="submit"></label>  
         <input type="submit" value="Create Account" placeholder="Sign Up">
         <a href="/users/login">Already have one?</a>
     </form>
