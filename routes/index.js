@@ -203,7 +203,7 @@ const constructorMethod = (app) => {
 			docsList = await doctorData.getDoctors(req.query.id);
 		}
 		
-		res.render('doctors',{docsList:docsList,user:user, hospitalList: hospitalList, docSearchList:docSearchList, searchValue:searchValue});
+		res.render('doctors',{docsList:docsList,user:user,hospital:hospital, hospitalList: hospitalList, docSearchList:docSearchList, searchValue:searchValue});
 
 	});
 
