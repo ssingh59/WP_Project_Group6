@@ -68,7 +68,8 @@ const constructorMethod = (app) => {
 		 let user = req.session.user;
  
 		 if(!req.params.id || req.params.id===undefined){
-			 throw 'doctor id is required'
+			res.status(400).json({error: 'Data is missing or not provided.'});
+			return;
 		 }
 		 try{
 		 let HospitalList = await hospitalData.getHospitalByDoc(xss(req.params.id));
@@ -86,10 +87,12 @@ const constructorMethod = (app) => {
 		 let user = req.session.user;
 		 let userid = user._id;
 		 if(!req.params.id || !req.body.hospitals || !req.body.app_date){
-			 throw 'form data is required.'
+			res.status(400).json({error: 'Data is missing or not provided.'});
+			return;
 		 }
 		 if(req.params.id ===undefined || req.body.hospitals===undefined || req.body.app_date===undefined){
-			 throw 'form data is required.'
+			res.status(400).json({error: 'Data is missing or not provided.'});
+			return;
 		 }
 		 let docid = xss(req.params.id);
 		 let hospid = xss(req.body.hospitals);
@@ -130,7 +133,8 @@ const constructorMethod = (app) => {
  
 		 let user = req.session.user;
 		 if(!req.params.id || req.params.id===undefined || !req.body.notes || req.body.notes===undefined){
-			 throw "Appointment id is required."
+			res.status(400).json({error: 'Data is missing or not provided.'});
+			return;
 		 }
 		 let appointmentId = xss(req.params.id);
 		 let notes = xss(req.body.notes);
@@ -147,7 +151,8 @@ const constructorMethod = (app) => {
 		 let user = req.session.user;
 		 if(!req.params.id || req.params.id===undefined)
 		 {
-			 throw 'appointment id is required.'
+			res.status(400).json({error: 'Data is missing or not provided.'});
+			return;
 		 }
 		 try{
 		 const oldAppointment =  await reservationData.getAppointmentById(xss(req.params.id));
@@ -163,7 +168,8 @@ const constructorMethod = (app) => {
 	   app.get("/reservation/get/:id",async (req, res) => {
 		 let user = req.session.user;
 		 if(!req.params.id || req.params.id===undefined){
-			 throw 'appointment id is required.'
+			res.status(400).json({error: 'Data is missing or not provided.'});
+			return;
 		 }
 		 try {
 			 const reservation = await reservationData.getAppointmentById(xss(req.params.id));
@@ -179,7 +185,8 @@ const constructorMethod = (app) => {
 	  app.get('/reservation/delete/:id', async (req , res) =>{
 		 let user = req.session.user;
 		 if(!req.params.id || req.params.id===undefined){
-			 throw 'appointment id is required to delete.'
+			 res.status(400).json({error: 'Data is missing or not provided.'});
+			return;
 		 }
 		 try{
 		 const deletedAppoint = await reservationData.deleteAppointment(xss(req.params.id));
