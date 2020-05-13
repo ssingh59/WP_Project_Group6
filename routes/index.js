@@ -127,7 +127,11 @@ const constructorMethod = (app) => {
 		
 		res.render('doctors',{docsList:docsList,user:user, hospitalList: hospitalList, docSearchList:docSearchList, searchValue:searchValue});
 	});
-
+	app.get('/logout', async (req, res) => {
+		req.session.destroy();
+		// res.status(200).json('user logged out')
+		res.redirect('/signup')
+	  })
 	app.use("*", (req, res) => {
 		res.status(404).json({ error: "Not found" });
 	  });
