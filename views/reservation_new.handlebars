@@ -48,10 +48,15 @@
           <td><label for="lname">Select Hospital:</label></td>
          
             <td><select name="hospitals" id="hosplist" required>
-                <option value="">Select</option>
-                {{#each HospitalList}}
-                <option value="{{this._id}}">{{this.name}}</option>
-                {{/each}}
+        
+                {{#ifNotEquals hospital null}}
+                       <option value="{{hospital._id}}">{{hospital.name}}</option>
+                  {{else}}
+                      <option value="">Select</option>
+                    {{#each HospitalList}}
+                    <option value="{{this._id}}">{{this.name}}</option>
+                     {{/each}}
+                   {{/ifNotEquals}}
               </select></td>
         </tr>
         <tr>
