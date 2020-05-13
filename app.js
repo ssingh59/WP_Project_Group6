@@ -24,6 +24,8 @@ app.use(session({
 handlebars.registerHelper('json', function(context) {
   return JSON.stringify(context);
 });
+handlebars.registerHelper('ifNotEquals', function(arg1, arg2, options) { if (arg1 != arg2) {return options.fn(this)} return options.inverse(this); });
+handlebars.registerHelper('ifEquals', function(arg1, arg2, options) { console.log('proecessing helper'); if (arg1 == arg2) {console.log('returning true');return options.fn(this)} console.log('returning false');return options.inverse(this); });
 app.use(cookieParser());
 
 app.use(express.urlencoded({ extended: false }));
