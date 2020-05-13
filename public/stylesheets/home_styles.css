@@ -10,7 +10,7 @@
   
   .header a {
     float: left;
-   color: #296097;
+    color: #296097;
     text-align: center;
     padding: 12px;
     text-decoration: none;
@@ -33,6 +33,53 @@
   .header-right {
     float: right;
   }
+
+  .header .search{
+      position: absolute;
+      right: 10px;
+      top: 80px;
+  }
+
+.bar1 input {
+    background: rgb(238, 235, 226);
+    color: #9E9C9C;
+}
+.bar1 button {
+    top: 0;
+    right: 0;
+    background: rgb(13, 132, 182);
+    border-radius: 0 5px 5px 0;
+}
+.bar1 button:before {
+    content: "\f002";
+    font-family: FontAwesome;
+    font-size: 16px;
+    color: #F9F0DA;
+}
+
+.search form {
+  position: relative;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.search input, button {
+  border: none;
+  outline: none;
+}
+
+.search input {
+  width: 100%;
+  height: 42px;
+  padding-left: 13px;
+}
+
+.search button {
+  height: 42px;
+  width: 42px;
+  cursor: pointer;
+  position: absolute;
+}
 
 /*============================================
 * Hero Area
@@ -239,7 +286,26 @@
 
 .mt-doctor {
     position: relative;
-    z-index: 1;
+}
+
+.intersection {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.mt-doctor:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    background: #BFEFFF;
+}
+
+.mt-doctor:hover:before {
+    opacity: 0.7;
 }
 
 .mt-doctor .content {
@@ -256,19 +322,51 @@
     bottom: 0;
 }
 
-.doctors-carousel .owl-dots {
-    text-align: center;
-    margin-top: 50px;
+.doctor-info {
+    padding-top: 20px;
+    padding-left: 30px;
 }
 
-.doctors-carousel .owl-dots {
-    margin-top: 30px;
+.doctor-info h3 {
+    font: bold 25px Helvetica, Verdana, sans-serif;  
 }
+
+.doctor-details li{
+    justify-content: space-between;
+    letter-spacing: 0;
+    font: 200 20px Georgia, Times New Roman, serif;
+    padding: 10px;
+}
+
+.feeAndBtn {
+    padding-top: 20px;
+}
+
+.feeAndBtn .fee {
+    font: 200 20px Georgia, Times New Roman, serif;
+}
+
 /* :horizontal */
 /* #wrap {
     display: flex;
-    justify-content: center;
 } */
+.apt-btn {
+    position: absolute;
+    bottom: 10px;
+    height: 50px;
+    line-height: 48px;
+    font-size: 14px;
+    letter-spacing: 0;
+    background: #2c76e2;
+    padding: 0 15px;
+    color: #fff;
+}
+
+.apt-btn:hover {
+    background: #0987dc;
+    border-color: #0987dc;
+}
+
 /*============================================
 * END doctors-carousel
 *=============================================*/

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>Dr. P.Smith</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    
+    <link href="../public/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+    <link href="../public/css/style.css" type="text/css" rel="stylesheet" media="all">
+    
+    <link href="../public/css/fontawesome-all.min.css" rel="stylesheet">
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+</head>
+
+<body>
+    <div>
+        
+    <header>
+        <div class="header">
+            <a href="#default" class="logo"><img src="../public/images/logo"  height="62" width="130"></a>
+            <div class="header-right">
+              <a href="home.html">Home</a> 
+              <a href="contact.html">Contact</a>
+              <a href="about.html">About</a>
+            </div>
+            
+        </div>
+    </header>
+        
+    </div>  
+  
+   <section class="team-agile py-lg-5">
+        <div class="container py-sm-5 pt-5 pb-0">
+            <div class="title-section text-center pb-lg-5">
+                <h4>world of medicine</h4>
+                <h3 class="w3ls-title text-center text-capitalize">the medical staff</h3>
+            </div>
+            <div class="row mt-5 pb-lg-5">
+                <div class="col-md-4 border p-0 my-auto">
+                    <img src="../public/home_images/t4.jpg" class="img-fluid" alt="team-img" />
+                </div>
+                <div class="col-md-8 team-text mt-md-0 mt-5">
+                    <h4>Dr. P.Smith</h4>
+                    <small>Cardiologist</small>
+                    <p class="my-3">Donec consequat sapien ut leo cursus rhoncus.Quisque velit nisi, pretium ut lacinia in, elementum id
+                        enim. Cras ultricies ligula Nullam dui mi, vulputate ac metus at, semper varius orci. Nulla accumsan
+                        ac elit in congue.</p>
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item border-0">
+                            <i class="far fa-check-square  mr-3"></i>Dental care Specialist</li>
+                        <li class="list-group-item border-0 py-0">
+                            <i class="far fa-check-square  mr-3"></i>
+                            Experience : 8+ years</li>
+                        <li class="list-group-item border-0">
+                            <i class="far fa-check-square  mr-3"></i>
+                            State : Newyork</li>
+                        <li class="list-group-item border-0 py-0">
+                            <i class="far fa-check-square  mr-3"></i>USA</li>
+                        <li class="list-group-item border-0">
+                            <i class="far fa-clock  mr-3"></i>
+                            <span class="ot">MON - SAT : 11:00 AM - 2:00 PM , 3:00 PM - 6:00 PM </span>
+                        </li>
+                    </ul>
+                    <a href="#" class="btn_apt" data-toggle="modal" data-target="#exampleModalLabel2">make an appointment </a>
+                </div>
+            </div>
+    </section>
+
+    <div class="modal fade" id="exampleModalLabel2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Fill details below to make an appointment</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="wthree-info">
+
+                        <div class="login">
+                            <form action="#" method="post">
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Patient name</label>
+                                    <input type="text" class="form-control" placeholder=" " name="Name" id="recipient-name" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-email" class="col-form-label">Email</label>
+                                    <input type="text" class="form-control" placeholder=" " name="Name" id="recipient-email" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-phone" class="col-form-label">Phone</label>
+                                    <input type="text" class="form-control" placeholder=" " name="Name" id="recipient-phone" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-phone" class="col-form-label">Note</label>
+                                    <textarea type="text" class="form-control" placeholder=" " name="Name" id="recipient-note" required="" rows="10" cols="70"></textarea> 
+                                </div>
+                                <div class="form-group">
+                                    <label for="datepicker" class="col-form-label">Choose Date of Appointment</label>
+                                    <input placeholder="Date" class="date form-control" id="datepicker" type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}"
+                                        required="" />
+                                </div>
+                                <div class="form-group">
+                                    <select required="" class="form-control">
+                                        <option value="">Select Time</option>
+                                        <option value="1">11:00-12:30</option>
+                                        <option value="2">12:30-14:00</option>
+                                        <option value="3">15:00-16:30</option>
+                                        <option value="4">16:30-18:00</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select required="" class="form-control">
+                                        <option value="">Select Speciality</option>
+                                        <option value="1">Dermatology</option>
+                                        <option value="2">ENT</option>
+                                        <option value="3"> Genaral Medicine</option>
+                                        <option value="4">Nutritionist</option>
+                                    </select>
+                                </div>
+                                <input type="submit" value="Request Appointment" class="btn_apt">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+       <!-- footer area start -->
+    <footer>
+        <!-- footer area top start -->
+        <div class="footer-top ptb--60">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="fwidget fwidget-company">
+                            <div class="flogo">
+                                <a href="home2.html">
+                                <img src="../public/images/logo" alt="logo" height="62" width="130"></a></div>
+                            <p>Founded in 2020, City Health Care Provider has had a highly, uniquely experienced team of qualified
+                                executives in the fields of medicine.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-6">
+                        <div class="fwidget fwidget-quicklinks">
+                            <h4 class="fwidget-title">Quick Links</h4>
+                            <ul class="links">
+                                <li><a href="#">About</a></li>
+                                <li><a href="contact.html">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer area top end -->
+        <!-- footer area bootom start -->
+        <div class="footer-bottom-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <p class="copyright">
+                            ©City Health Care Provider! All Rights Reserved By Team6</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer area bootom end -->
+    </footer>
+    <!-- footer area end -->
+    
+    
+    <script src="../public/js/jquery-2.2.3.min.js"></script>
+   
+    
+    <script>
+        $(function () {
+            var hidden = true;
+            $(".heading").click(function () {
+                if (hidden) {
+                    $(this).parent('.outer-col').animate({
+                        bottom: "0"
+                    }, 1200);
+                } else {
+                    $(this).parent('.outer-col').animate({
+                        bottom: "-305px"
+                    }, 1200);
+                }
+                hidden = !hidden;
+            });
+        });
+    </script>
+    
+    <link rel="stylesheet" href="../public/css/jquery-ui.css" />
+    <script src="../public/js/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker,#datepicker1").datepicker();
+        });
+    </script>
+    
+    
+    <script src="../public/js/easing.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1000);
+            });
+        });
+    </script>
+    <script src="../public/js/SmoothScroll.min.js"></script>
+
+    
+    <script src="../public/js/bootstrap.js"></script>
+</body>
+
+</html>

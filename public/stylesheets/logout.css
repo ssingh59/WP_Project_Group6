@@ -1,0 +1,35 @@
+.logout-area {
+    padding: 140px 0 211px;
+    background: url(../images/logout.jpg) center/cover no-repeat;
+}
+
+.logout-content h2 {
+    font-size: 60px;
+    font-weight: 700;
+    color: #222222;
+    letter-spacing: 0;
+    line-height: 66px;
+    margin-bottom: 17px;
+}
+
+.logout-content p {
+    font-size: 18px;
+    color: #878787;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.logout-content a {
+    margin-top: 35px;
+    display: inline-block;
+    height: 60px;
+    background: #2c76e2;
+    line-height: 60px;
+    letter-spacing: 0;
+    color: #fff;
+    padding: 0 35px;
+    border-radius: 60px;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
