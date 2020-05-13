@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+ <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+</head>
+<body background="/public/images/background_image.jpg">
+<div id="error" class ="error" hidden> </div>
+<div id = "closebtnId" class="closebtn" hidden> &times;</div>
+{{#if hasErrors}}
+ 
+      <div id = "error_alert" class="error"> {{error}}</div>
+      <div id = "closebtnId1" class="closebtn"> &times;</div>
+  {{/if}}
+
+<form class="box" id ="signupForm" form action="/users" method="POST" >
+        <h1>Sign up</h1>   
+        <input id = "username" type="text" name="username" placeholder="Username" >
+        <input id = "email" type="email" name="email" placeholder="Email" >
+        <input id = "password" type="password" name = "password" placeholder="Password" >
+        <input id = "repassword" type="password" name = "repassword" placeholder="Re-enter Password" >
+        <input type="submit" value="Create Account" placeholder="Sign Up">
+        <a href="/login">Already have one?</a>
+    </form>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src='/public/scripts/script_signup.js'></script>
+
+
+</body>
+
+
+
+</html>
