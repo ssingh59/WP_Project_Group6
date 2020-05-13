@@ -22,11 +22,11 @@
 {{!-- form for specific doctors --}}
 <div class="card">
     <div class="container" style="padding:16px">
-<form id ="reservationForm" form action="/reservation/new/{{docsList._id}}" method="POST" >
+<form id ="reservationForm" action="/reservation/new/{{docsList._id}}" method="POST" >
 
 
    <table style="margin-left: 100px;">
-     <tr></tr>
+    
       <tr>
             <td><label for="docName">Doctor's Name:</label></td>
             <td><input style="background-color: darkgray;" value="{{docsList.name}}" type="text" name="docName" id="docName" readonly></td>

@@ -168,7 +168,7 @@ module.exports = {
         let objId = id;
         const appointmentCollection = await appointments();
         const oldnotes = await this.getAppointmentById(id);
-        const newNote = oldnotes.notes+". "+ notes;
+        const newNote = oldnotes.notes+" "+ notes;
 
         const updatedNote = {
           notes: newNote
